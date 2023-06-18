@@ -1,71 +1,103 @@
-function fImpares() {
 
+var result = 0;
+var result_temp = "";
+var operator = '+';
+var first = true;
+var operator_ant = '+';
 
-    for (i = 1; i <= 20; i++) {
+function press(parameter) {
+    result_temp += parameter;
+    console.log("result_temp = " + result_temp);
+    console.log("result = " + result);
+}
 
-        if (!(i % 2 === 0)) {
-            console.log(i);
+/* function press(parameter) {
+
+    if (operator === '+') {
+        result = result + parameter;
+    }
+    else if (operator === '-') {
+        result = result - parameter;
+    }
+    else if (operator === '*') {
+        if (first) {
+            result = 1;
         }
+        result = result * parameter;
     }
-
-}
-
-
-function fMul3() {
-
-
-    for (i = 100; i > -1; i--) {
-
-        if (i % 3 === 0) {
-            console.log(i);
+    else if (operator === '/') {
+        if (first) {
+            result = 1;
         }
+        result = result / parameter;
     }
+    else {
+        result = parameter;
+    }
+
+    if (first) { first = false; }
 }
+ */
+function calculate() {
 
-
-
-function fSecuen() {
-
-    for (i = 4; i >= -3.5; i += -1.5) {
-
-
-        console.log(i);
-
-    }
-
-}
-
-function fSigma() {
-    var sum = 0;
-
-    for (i = 1; i <= 100; i++) {
-
-
-        sum = sum + i;
-
-
-    }
-
-    console.log(sum);
-
+    // debugger;
+    setOP("=");
+    var displayDiv = document.querySelector("#display");
+    // console.log(displayDiv);
+    displayDiv.innerText = result;
 
 }
 
+function clr() {
 
-function fFactorial() {
+    // debugger;
 
-    var product = 1;
+    result = 0;
+    result_temp = "";
+    calculate();
+}
 
-    for (i = 1; i <= 12; i++) {
+function setOP(setOP) {
 
 
-        product = product * i;
+    operator = setOP;
 
+    if (!(first)) {
 
+        if (operator_ant === '+') {
+            result = result + +result_temp;
+        }
+        else if (operator_ant === '-') {
+            result = result - +result_temp;
+        }
+        else if (operator_ant === '*') {
+
+            result = result * +result_temp;
+        }
+        else if (operator_ant === '/') {
+
+            result = result / +result_temp;
+        }
+        else {
+            result = +result_temp;
+
+        }
+
+        result_temp = "";
+    }
+    else {
+        result = +result_temp;
+        result_temp = "";
+        first = false;
     }
 
-    console.log(product);
+    if (!(operator === "=")) {
+        operator_ant = operator;
+    }
 
+
+    console.log("result_temp = " + result_temp);
+    console.log("result = " + result);
 
 
 }
